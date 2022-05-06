@@ -31,7 +31,7 @@ abstract class _RouteMiddleware {
   /// }
   /// ```
   /// {@end-tool}
-  RouteSettings? redirect(String route);
+  RouteSettings? redirect(String route, Object? arguments);
 
   /// Similar to [redirect],
   /// This function will be called when the router delegate changes the
@@ -101,7 +101,7 @@ class GetMiddleware implements _RouteMiddleware {
   GetMiddleware({this.priority});
 
   @override
-  RouteSettings? redirect(String? route) => null;
+  RouteSettings? redirect(String? route, Object? arguments) => null;
 
   @override
   GetPage? onPageCalled(GetPage? page) => page;
@@ -143,10 +143,10 @@ class MiddlewareRunner {
     return page;
   }
 
-  RouteSettings? runRedirect(String? route) {
+  RouteSettings? runRedirect(String? route, Object? arguments) {
     RouteSettings? to;
     for (final element in _getMiddlewares()) {
-      to = element.redirect(route);
+      to = element.redirect(route, arguments);
       if (to != null) {
         break;
       }
@@ -273,7 +273,7 @@ class PageRedirect {
     if (match.route!.middlewares == null || match.route!.middlewares!.isEmpty) {
       return false;
     }
-    final newSettings = runner.runRedirect(settings!.name);
+    final newSettings = runner.runRedirect(settings!.name, settings!.arguments);
     if (newSettings == null) {
       return false;
     }
