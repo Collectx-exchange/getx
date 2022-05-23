@@ -7,8 +7,7 @@ import '../rx_flutter/rx_notifier.dart';
 import 'list_notifier.dart';
 
 // ignore: prefer_mixin
-abstract class GetxController extends DisposableInterface
-    with ListenableMixin, ListNotifierMixin {
+abstract class GetxController extends DisposableInterface with ListenableMixin, ListNotifierMixin {
   /// Rebuilds `GetBuilder` each time you call `update()`;
   /// Can take a List of [ids], that will only update the matching
   /// `GetBuilder( id: )`,
@@ -87,13 +86,13 @@ mixin FullLifeCycleMixin on FullLifeCycleController {
   @override
   void onInit() {
     super.onInit();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @mustCallSuper
   @override
   void onClose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.onClose();
   }
 

@@ -6,7 +6,10 @@ import 'get_main_test.dart';
 
 class RedirectMiddleware extends GetMiddleware {
   @override
-  RouteSettings redirect(String? route) => RouteSettings(name: '/second');
+  RouteSettings redirect(String? route, Object? arguments) => RouteSettings(
+        name: '/second',
+        arguments: arguments,
+      );
 }
 
 void main() {
@@ -16,10 +19,7 @@ void main() {
         initialRoute: '/',
         getPages: [
           GetPage(name: '/', page: () => Container()),
-          GetPage(
-              name: '/first',
-              page: () => FirstScreen(),
-              middlewares: [RedirectMiddleware()]),
+          GetPage(name: '/first', page: () => FirstScreen(), middlewares: [RedirectMiddleware()]),
           GetPage(name: '/second', page: () => SecondScreen()),
           GetPage(name: '/third', page: () => ThirdScreen()),
         ],

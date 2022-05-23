@@ -354,7 +354,7 @@ extension ExtensionSnackbar on GetInterface {
     if (instantInit) {
       controller.show();
     } else {
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         controller.show();
       });
     }
@@ -465,7 +465,7 @@ extension ExtensionSnackbar on GetInterface {
       controller.show();
     } else {
       //routing.isSnackbar = true;
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         controller.show();
       });
     }
@@ -1052,7 +1052,7 @@ you can only use widgets and widget functions here''';
   /// Your entire application will be rebuilt, and touch events will not
   /// work until the end of rendering.
   Future<void> forceAppUpdate() async {
-    await engine!.performReassemble();
+    await engine.performReassemble();
   }
 
   void appUpdate() => _getxController.update();
@@ -1161,10 +1161,7 @@ you can only use widgets and widget functions here''';
   }
 
   ///The current [WidgetsBinding]
-  WidgetsBinding? get engine {
-    if (WidgetsBinding.instance == null) {
-      WidgetsFlutterBinding();
-    }
+  WidgetsBinding get engine {
     return WidgetsBinding.instance;
   }
 

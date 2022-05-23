@@ -208,7 +208,7 @@ class GetMaterialApp extends StatelessWidget {
           onDispose?.call();
         },
         initState: (i) {
-          Get.engine!.addPostFrameCallback((timeStamp) {
+          Get.engine.addPostFrameCallback((timeStamp) {
             onReady?.call();
           });
           if (locale != null) Get.locale = locale;
