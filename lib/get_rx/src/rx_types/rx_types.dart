@@ -2,6 +2,7 @@ library rx_types;
 
 import 'dart:async';
 import 'dart:collection';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import '../rx_stream/rx_stream.dart';
