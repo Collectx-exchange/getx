@@ -1,4 +1,4 @@
-export 'context_extensions.dart';
+export 'context_extensions.dart' hide IterableExt;
 export 'double_extensions.dart';
 export 'duration_extensions.dart';
 export 'dynamic_extensions.dart';
