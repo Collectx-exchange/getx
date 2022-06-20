@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
@@ -175,8 +176,12 @@ class Notifier {
   T append<T>(NotifyData data, T Function() builder) {
     _notifyData = data;
     final result = builder();
-    if (data.disposers.isEmpty && data.throwException) {
-      throw ObxError();
+    if (data.disposers.isEmpty) {
+      if (data.throwException) {
+        throw ObxError();
+      } else {
+        log(ObxError().toString(), level: 900); // Warning level
+      }
     }
     _notifyData = data;
     return result;

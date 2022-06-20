@@ -107,8 +107,8 @@ mixin ObserverComponent on ComponentElement {
       markNeedsBuild();
     } else {
       // refresh was called during the building
-      if (ambiguate(SchedulerBinding.instance)!.schedulerPhase 
-      != SchedulerPhase.idle) {
+      if (ambiguate(SchedulerBinding.instance)!.schedulerPhase !=
+          SchedulerPhase.idle) {
         // Await for the end of build
         await ambiguate(SchedulerBinding.instance)!.endOfFrame;
         if (dirty) return false;
@@ -123,7 +123,13 @@ mixin ObserverComponent on ComponentElement {
   @override
   Widget build() {
     return Notifier.instance.append(
-        NotifyData(disposers: disposers!, updater: getUpdate), super.build);
+      NotifyData(
+        disposers: disposers!,
+        updater: getUpdate,
+        throwException: false,
+      ),
+      super.build,
+    );
   }
 
   @override
